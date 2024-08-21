@@ -17,7 +17,7 @@ def metodo_secante(f, x0, x1, tol):
             print("División por cero detectada en la fórmula de la secante.")
             return None, None
         
-        xNuevo = x1 - f(x1) * (x1 - x0) / (f(x1) - f(x0))
+        xNuevo = x1 - (f(x1) * (x1 - x0)) / (f(x1) - f(x0))
         
         # Calcular el error relativo
         error = abs(xNuevo - x1)
