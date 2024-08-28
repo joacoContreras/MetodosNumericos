@@ -28,6 +28,7 @@ def punto_fijo():
         
     return xNuevo, error, iteracion
 
+
 x, error, iteracion = punto_fijo()
 print("X = " + str(x))
 print("Error = " + str(error))
