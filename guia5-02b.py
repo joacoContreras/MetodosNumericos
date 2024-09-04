@@ -27,7 +27,7 @@ def lagrange_interpolation(xi, fi):
 x_vals = np.linspace(-3, 3, 400)
 
 # Grados a utilizar
-grados = [1,2,3,4,5,6,7,8,9,10]
+grados = [1,2,3]
 
 # Graficar f(x) original
 plt.figure(figsize=(10, 8))

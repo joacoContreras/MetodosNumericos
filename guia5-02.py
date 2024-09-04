@@ -2,7 +2,13 @@ import numpy as np
 import sympy as sym
 import matplotlib.pyplot as plt
 
-# Definir la función f(x)
+#El enunciado sugiere que agregar más puntos (aumentar n) 
+# no siempre mejora la aproximación en todo el dominio. 
+# Esto se debe a un fenómeno conocido como el 
+# "fenómeno de Runge", que ocurre cuando los polinomios 
+# de mayor grado pueden oscilar excesivamente y proporcionar 
+# una peor aproximación.
+
 def f(x):
     return np.exp(-x**2)
 
