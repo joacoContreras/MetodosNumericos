@@ -2,15 +2,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Datos de ejemplo
-x = [0.2, 0.6, 1.3, 1.4, 1.8, 2.0]
-y = [-0.94, -0.26, 2.35, 2.94, 5.45, 7.20]
+x = [1.0, 1.2, 1.5, 1.75, 2.0]
+y = [-0.148, -0.040, 0.181, 0.419, 0.700]
 
 # Convertimos las listas a arrays de NumPy
 x = np.array(x)
 y = np.array(y)
 
 # Grado del polinomio (puedes cambiar este valor para ajustar polinomios de diferentes grados)
-grado = 2
+grado = 4
 
 # Ajuste polinomial con NumPy
 coeficientes = np.polyfit(x, y, grado)

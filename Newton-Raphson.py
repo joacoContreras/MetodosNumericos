@@ -2,11 +2,11 @@ import math
 
 # Definición de la función f(x) cuya raíz queremos encontrar
 def f(x):
-    return x**5 - 3*x**3 - 2*x**2 + 2
+    return math.log(x**2+1) - math.sin(x)
 
 # Derivada de la función f(x)
 def df(x):
-    return 5 * x**4 - 9 * x**2 - 4 * x
+    return (2*x)/(x**2+1) - math.cos(x)
 
 # Método de Newton-Raphson
 def newton_raphson(f, df, xViejo, tol):

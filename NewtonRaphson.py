@@ -2,7 +2,7 @@ import math
 
 # Definición de la función f(x) cuya raíz queremos encontrar
 def f(x):
-    return x**3 - x - 1
+    return math.log(x**2+1) - math.sin(x)
 
 # Derivada de la función f(x)
 def df(x):
@@ -45,8 +45,8 @@ def newton_raphson(f, df, x0, tol, max_iter):
     return x1, iteracion, convergio
 
 # Valores iniciales
-x0 = 2.0  # Valor inicial
-tol = 1e-5  # Tolerancia
+x0 = 1.0  # Valor inicial
+tol = 1e-8  # Tolerancia
 max_iter = 100  # Máximo número de iteraciones
 
 # Llamada al método de Newton-Raphson
