@@ -2,11 +2,11 @@ import math
 
 # Definición de la función g(x) para el método de punto fijo
 def g(x):
-    return math.log(10 / x)
+    return math.log(x**2+1) - math.sin(x) + x
 
 # Definición de la función f(x) cuya raíz queremos encontrar
 def f(x):
-    return x**3 - x - 1
+    return math.log(x**2+1) - math.sin(x)
 
 # Método de Punto Fijo
 def punto_fijo(g, x0, tol, max_iter):
@@ -30,7 +30,7 @@ def punto_fijo(g, x0, tol, max_iter):
     return x1, iteracion, convergio
 
 # Valores iniciales
-x0 = 2.0  # Valor inicial
+x0 = 1.0  # Valor inicial
 tol = 1e-5  # Tolerancia
 max_iter = 100  # Máximo número de iteraciones
 

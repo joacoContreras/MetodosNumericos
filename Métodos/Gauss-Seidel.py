@@ -1,16 +1,16 @@
 import numpy as np
 
 # INGRESO
-A = np.array([[3. , -0.1, -0.2],
-              [0.1,  7  , -0.3],
-              [0.3, -0.2, 10  ]])
+A = np.array([[5, 1, -2],
+              [1, -4, 2],
+              [0, 2, 5]])
 
-B = np.array([7.85,-19.3,71.4])
+B = np.array([16, -19, -14])
 
 X0  = np.array([0.,0.,0.])
 
-tolera = 0.00001
-iteramax = 100
+tolera = 1e-4
+iteramax = 1000
 
 # PROCEDIMIENTO
 
@@ -67,3 +67,7 @@ print('Respuesta X: ')
 print(X)
 print('Verificar A.X=B: ')
 print(verifica)
+print("Iteraciones: ")
+print(itera)
+print('Error estimado:')
+print(errado)

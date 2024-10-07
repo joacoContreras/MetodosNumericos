@@ -1,4 +1,4 @@
-
+import math
 # xl: limite inferior del intervalo
 # xu: Limite superior del intervalo
 # tol: Tolerancia o error maximo permitido
@@ -6,7 +6,7 @@
 
 def f(x):
     # Define aquí tu función. Por ejemplo:
-    return -2+7*x-5*x*x+6*x*x*x
+    return math.log(x**2+1) - math.sin(x)
 
 def biseccion(f, xl, xu, tol):
     # Verifica que hay un cambio de signo en el intervalo
@@ -34,23 +34,29 @@ def biseccion(f, xl, xu, tol):
         if error < tol:
             break
         
+        if iteracion == 10:
+            print(f"La raíz en la iteracion 10 es: {xr}")
+            print(f"error estimado en iteracion 10: {error}")
+        
+        
         # Actualiza los límites del intervalo
         if f(xr) * f(xl) < 0:
             xu = xr
         else:
             xl = xr
 
-    return xr, iteracion  # Devuelve la raíz y el número de iteraciones
+    return xr, iteracion, error  # Devuelve la raíz y el número de iteraciones
 
 # Valores iniciales
-xl = 0.33
-xu = 0.334
-tol = 1e-4
+xl = 1.0
+xu = 2.0
+tol = 1e-8
 
 # Llamada a la función de bisección
-raiz, total_iteraciones = biseccion(f, xl, xu, tol)
+raiz, total_iteraciones,error = biseccion(f, xl, xu, tol)
 
 # Imprime el resultado final
 if raiz is not None:
     print(f"La raíz más pequeña encontrada es: {raiz}")
     print(f"Número total de iteraciones: {total_iteraciones}")
+    print(f"error estimado: {error}")

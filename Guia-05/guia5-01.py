@@ -1,13 +1,13 @@
 import numpy as np
 import sympy as sym
 import matplotlib.pyplot as plt
-
+import math
 # Definir la función f(x)
 def f(x):
-    return x + 2/x  # Ejemplo de función, puedes cambiarla
+    return  math.log(x**2+1)-math.sin(x)# Ejemplo de función, puedes cambiarla
 
 # Puntos xi
-xi = np.array([1, 2, 2.5])
+xi = np.array([1.6])
 
 # Calcular los valores de f(x) en xi
 fi = f(xi)
