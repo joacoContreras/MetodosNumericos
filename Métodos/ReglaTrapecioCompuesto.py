@@ -9,7 +9,7 @@ fx = lambda x: x**2 + 1
 # intervalo de integración
 a = 0
 b = 3
-tramos = 3
+tramos = 3 # SubIntervalos
 
 # PROCEDIMIENTO
 # Regla del Trapecio

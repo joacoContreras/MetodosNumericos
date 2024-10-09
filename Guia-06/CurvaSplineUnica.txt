@@ -1,0 +1,22 @@
+ (Condiciones adicionales para una curva spline única)
+En el Ejercicio 3, se pregunta qué condiciones adicionales son necesarias 
+para definir una curva spline única.
+
+Un spline cúbico es una función polinomial por tramos, donde cada tramo
+entre dos puntos consecutivos se aproxima mediante un polinomio de grado 3. 
+Para que la solución sea única, las condiciones adicionales que se suelen 
+imponer son:
+
+# Continuidad en la función en todos los puntos de interpolación.
+# Continuidad en la primera derivada en los puntos de interpolación.
+# Continuidad en la segunda derivada en los puntos de interpolación.
+
+Estas condiciones aseguran una suavidad de la curva. Sin embargo, 
+para que el sistema tenga una solución única, se necesitan dos condiciones 
+adicionales en los extremos, conocidas como condiciones de frontera. 
+Estas pueden ser:
+
+# Splines naturales: Se impone que la segunda derivada en los extremos sea 0.
+# Splines de soporte fijo: Se da el valor de la primera derivada en los extremos.
+# Splines clamped: Se imponen condiciones de la primera derivada en los extremos 
+(derivadas conocidas).
