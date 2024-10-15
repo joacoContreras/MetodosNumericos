@@ -4,11 +4,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 import math
 # INGRESO
-fx = lambda x: (1+x**2)**-1
+fx = lambda x: (1+(math.cos(x))**2)**0.5
 
 # intervalo de integración
-a = -1
-b = 1
+a = 0
+b = math.pi/4
 tramos = 10 # SubIntervalos
 
 # PROCEDIMIENTO
@@ -26,6 +26,7 @@ area = h*(suma/2)
 # SALIDA
 print('tramos: ', tramos)
 print('Integral: ', area)
+
 
 # GRAFICA
 # Puntos de muestra

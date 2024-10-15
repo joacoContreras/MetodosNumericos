@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import math
 
 # INGRESO
-fx = lambda x: math.sin(x+1)/(x+1)
+fx = lambda x: math.sin(2*x)*math.e**(-x)
 
 # Intervalo de integración
 a = -1
@@ -17,7 +17,9 @@ if puntos > 1 and puntos < 7:
         case 2:
             c0, c1 = 1, 1
             x0, x1 = -0.577350269, 0.577350269
-            integral = ((b-a)/2) * (c0 * fx((b-a)*x0/2 + (b+a)/2) + c1 * fx((b-a)*x1/2 + (b+a)/2))
+            integral = ((b-a)/2) * (c0 * fx(((b-a)/2)*x0 + (b+a)/2) + 
+                                    c1 * fx(((b-a)/2)* x1 + (b+a)/2))
+            print('a = ',a,' b = ', b, ' puntos = ',puntos)
             print('Integral: ', integral)
         case 3:
             c0, c1, c2 = 0.5555556, 0.8888889, 0.5555556
