@@ -31,3 +31,24 @@ for i in range(0,tramos,2):
 print('tramos:', tramos)
 print('Integral: ', area)
 
+# GRAFICA
+# fx suave aumentando muestras
+muestrasfxSuave = 4*tramos + 1
+xk = np.linspace(a,b,muestrasfxSuave)
+fk = fx(xk)
+#plt.fill_between(xj,0,fj, color='g')
+plt.plot(xk,fk, label='f(x)')
+
+# fx muestras por tramo
+muestras = tramos + 1
+xi = np.linspace(a,b,muestras)
+fi = fx(xi)
+fi0 = np.zeros(muestras) # linea base
+plt.plot(xi,fi,'o', label='f(xi)')
+for i in range(0,muestras,1):
+    plt.vlines(xi,fi0,fi,linestyle='dotted')
+plt.axhline(0)
+plt.xlabel('x')
+plt.ylabel('f')
+plt.legend()
+plt.show()
