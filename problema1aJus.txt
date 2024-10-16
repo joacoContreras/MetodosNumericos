@@ -1,1 +1,0 @@
-Gracias al grafico podemos ver y afirmar que existe una raiz de f(x) en el intervalo [1.0,2.0]

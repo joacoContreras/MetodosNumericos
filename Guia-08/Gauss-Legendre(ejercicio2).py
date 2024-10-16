@@ -6,10 +6,10 @@ import math
 fx = lambda x: math.sin(2*x)*math.e**(-x)
 
 # Intervalo de integración
-a = -1
-b = 1
+a = 0
+b = math.pi
 
-puntos = 2 # Debe ser entre 2 y 6
+puntos = 3 # Debe ser entre 2 y 6
 
 # PROCEDIMIENTO
 if puntos > 1 and puntos < 7:
