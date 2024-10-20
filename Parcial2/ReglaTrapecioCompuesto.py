@@ -1,12 +1,12 @@
 import math
 
 # INGRESO
-fx = lambda x: x**2 + 1  # Función a integrar
+fx = lambda x: 3*math.pow(x,2) + 1  # Función a integrar
 
 # Intervalo de integración
 a = 0
-b = 3
-n = 2  # SubIntervalos
+b = 1
+n = 1000  # SubIntervalos
 
 # PROCEDIMIENTO
 h = (b - a) / n  # Paso
