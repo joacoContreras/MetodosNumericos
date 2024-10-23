@@ -2,15 +2,13 @@ import math
 
 # Definir la función f(x)
 def f(x):
-    return math.sin(x)  # Ejemplo de función, puedes cambiarla
+    return math.log(x) + 1/x
 
 def main():
-    # Ingresar x0 y xfinal
-    x0 = float(input("Ingrese el valor inicial (x0): "))
-    xfinal = float(input("Ingrese el valor final (xfinal): "))
-
-    # Ingresar n (número de divisiones)
-    n = int(input("Ingrese el número de divisiones (n): "))
+    # Definir los valores de x0, xfinal y n directamente en el código
+    x0 = 1.5
+    xfinal = 2.5 
+    n = 2 # Número de divisiones
 
     # Calcular h (incremento)
     h = (xfinal - x0) / n

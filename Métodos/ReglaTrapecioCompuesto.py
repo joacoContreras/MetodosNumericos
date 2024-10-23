@@ -4,7 +4,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 import math
 # INGRESO
+<<<<<<< Updated upstream
 fx = lambda x: (1+x**2)**-1
+=======
+fx = lambda x: (1+x**2)**(-1)
+>>>>>>> Stashed changes
 
 # intervalo de integración
 a = -1
