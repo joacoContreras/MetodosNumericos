@@ -1,62 +1,32 @@
-# Integración: Regla Simpson 1/3
-import numpy as np
-import matplotlib.pyplot as plt
 import math
+
 # INGRESO:
-<<<<<<< Updated upstream
-fx = lambda x: (1+x**2)**-1
-=======
-fx = lambda x: (1+x**2)**(-1)
->>>>>>> Stashed changes
+fx = lambda x: x**2 + 1  # Función a integrar
 
-# intervalo de integración
-a = -1
-b = 1
-<<<<<<< Updated upstream
-tramos = 5
-=======
-tramos = 6
->>>>>>> Stashed changes
+# Intervalo de integración
+a = 0
+b = 3
+n = 2   # El número de subintervalos debe ser par
 
-# Validar cantidad de tramos pares
-esimpar = tramos%2
-while (esimpar == 1):
-    print('tramos: ',tramos)
-    tramos = int(input('tramos debe ser par: '))
-    esimpar = tramos%2
+# Validar que la cantidad de tramos sea par
+if n % 2 == 1:
+    raise ValueError('El número de subintervalos debe ser par.')
 
 # PROCEDIMIENTO
 # Regla de Simpson 1/3
-h = (b-a)/tramos
-xi = a
-area = 0
-for i in range(0,tramos,2):
-    deltaA = (h/3)*(fx(xi)+4*fx(xi+h)+fx(xi+2*h))
-    area = area + deltaA
-    xi = xi + 2*h
+h = (b - a) / n
+suma = fx(a) + fx(b)
+
+# Sumar los valores de los puntos intermedios con el coeficiente adecuado
+for i in range(1, n):
+    x = a + i * h
+    if i % 2 == 0:
+        suma += 2 * fx(x)  # Coeficiente 2 en los puntos pares
+    else:
+        suma += 4 * fx(x)  # Coeficiente 4 en los puntos impares
+
+# Multiplicar por h/3
+integral = (h / 3) * suma
 
 # SALIDA
-print('tramos:', tramos)
-print('Integral: ', area)
-
-# GRAFICA
-# fx suave aumentando muestras
-muestrasfxSuave = 4*tramos + 1
-xk = np.linspace(a,b,muestrasfxSuave)
-fk = fx(xk)
-#plt.fill_between(xj,0,fj, color='g')
-plt.plot(xk,fk, label='f(x)')
-
-# fx muestras por tramo
-muestras = tramos + 1
-xi = np.linspace(a,b,muestras)
-fi = fx(xi)
-fi0 = np.zeros(muestras) # linea base
-plt.plot(xi,fi,'o', label='f(xi)')
-for i in range(0,muestras,1):
-    plt.vlines(xi,fi0,fi,linestyle='dotted')
-plt.axhline(0)
-plt.xlabel('x')
-plt.ylabel('f')
-plt.legend()
-plt.show()
+print('Integral: ', integral)

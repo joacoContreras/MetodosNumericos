@@ -34,7 +34,7 @@ def newton_raphson(f, df, xViejo, tol):
     return xNuevo, error
 
 # Valores iniciales
-xViejo = 0.1  # Valor inicial (debería estar más cerca de la raíz esperada)
+xViejo = 1.0 # Valor inicial (debería estar más cerca de la raíz esperada)
 tol = 1e-5  # Tolerancia
 
 # Llamada al método de Newton-Raphson

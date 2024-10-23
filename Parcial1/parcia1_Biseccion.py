@@ -3,51 +3,51 @@ import matplotlib.pyplot as plt
 
 # Definición de la función que se quiere encontrar la raíz
 def f(x):
-    return 0.1167*x**3 - 1.35*x**2 + 4.23*x - 3
+    return math.log(x**2 + 1) - math.sin(x)
 
 # Método de Bisección
-def biseccion(f, xl, xu, tol):
-    if f(xl) * f(xu) > 0:
+def biseccion(f, a, b, tol):
+    if f(a) * f(b) > 0:
         print("La función no cambia de signo en el intervalo dado para el método de bisección.")
         return None, [], 0, 0, 0
 
-    xr = xl
+    c = a
     iteracion = 0
     errores = []
 
     while True:
-        xr_prev = xr
-        xr = (xl + xu) / 2
+        c_prev = c
+        c = (a + b) / 2
         iteracion += 1
         
-        if xr_prev != 0:
-            error = abs((xr - xr_prev) / xr) * 100  # Error porcentual
+        if c_prev != 0:
+            error = abs((c - c_prev) / c) * 100  # Error porcentual
         else:
-            error = abs(xr - xr_prev) * 100
+            error = abs(c - c_prev) * 100
 
         errores.append(error)
         
         if error < tol:  # Verificar si el error porcentual está por debajo del 0.1%
             break
         
-        if f(xr) * f(xl) < 0:
-            xu = xr
+        if f(c) * f(a) < 0:
+            b = c
         else:
-            xl = xr
+            a = c
 
-    return xr, errores, error, iteracion
+    return c, errores, error, iteracion
 
 # Defino los valores iniciales
-xl = 2  # Límite inferior
-xu = 5  # Límite superior
+a = 1.0  # Límite inferior
+b = 2.0 # Límite superior
 tol = 0.1  # Tolerancia del 0.1%
 
 # Ejecutar el método de bisección y recopilar datos
-raiz_biseccion, errores_biseccion, error_final, iteraciones_biseccion = biseccion(f, xl, xu, tol)
+raiz_biseccion, errores_biseccion, error_final, iteraciones_biseccion = biseccion(f, a, b, tol)
 
 # Imprimir resultados
 print(f"\nMétodo de Bisección:")
-print(f"Intervalo empleado: [{xl}, {xu}]")
+print(f"Intervalo empleado: [{a}, {b}]")
 print(f"Raíz obtenida: {raiz_biseccion}")
 print(f"Error porcentual final: {error_final}%")
 print(f"Número total de iteraciones: {iteraciones_biseccion}")
