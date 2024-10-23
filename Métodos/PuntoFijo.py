@@ -2,11 +2,11 @@ import math
 
 # Definición de la función g(x) para el método de punto fijo
 def g(x):
-    return math.log(x**2+1) - math.sin(x) + x
+    return math.log(x**2+1) - math.sin(x)
 
 # Definición de la función f(x) cuya raíz queremos encontrar
 def f(x):
-    return math.log(x**2+1) - math.sin(x)
+    return math.log(x**2+1) - math.sin(x) + x
 
 # Método de Punto Fijo
 def punto_fijo(g, x0, tol, max_iter):

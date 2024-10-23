@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 
 # Sample data points (x, y)
 # Replace these with your data
-x = np.array([0.5, 0.8, 1.3, 2.0])
-y = np.array([-0.716, -0.103, 3.419, 52.598])
+x = np.array([1,1.2,1.5,1.75,2.0])
+y = np.array([-0.148, -0.04, 0.181, 0.419, 0.700])
 
 # Se calcula la media de los valores de x y y usando np.mean(). 
 # Estas medias se utilizan para encontrar la pendiente 
