@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import math
 
 # INGRESO
-fx = lambda x: math.pow(math.e,math.sqrt(1+x)) * math.log(1+2*math.pow(x,2))
+fx = lambda x: math.exp(math.sqrt(1 + x)) * math.log(1 + 2 * math.pow(x, 2)) / (2 * math.sqrt(1 + x)) + math.exp(math.sqrt(1 + x)) * (4 * x) / (1 + 2 * math.pow(x, 2))
 
 # Intervalo de integración
 a = 0

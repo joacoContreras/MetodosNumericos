@@ -2,7 +2,7 @@ import math
 
 # Definición de la función f(x) cuya raíz queremos encontrar
 def f(x):
-    return x**5 - 3*x**3 - 2*x**2 + 2
+    return math.log(x**2 + 1) - math.sin(x)
 
 # Método de la Secante
 def metodo_secante(f, x0, x1, tol):
@@ -36,8 +36,8 @@ def metodo_secante(f, x0, x1, tol):
     return xNuevo, error
 
 # Valores iniciales
-x0 = 0.0  # Primer valor inicial (debería estar cerca de la raíz esperada)
-x1 = 1.0  # Segundo valor inicial (diferente de x0 y cerca de la raíz)
+x0 = 1.0  # Primer valor inicial (debería estar cerca de la raíz esperada)
+x1 = 2.0  # Segundo valor inicial (diferente de x0 y cerca de la raíz)
 tol = 1e-5  # Tolerancia
 
 # Llamada al método de la Secante

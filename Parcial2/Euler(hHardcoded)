@@ -12,7 +12,7 @@ def main():
     n = 10  # Número de divisiones
 
     # Calcular h (incremento)
-    h = (xfinal - x0) / (n - 1)
+    h = 0.01
 
     # Inicializar valores de xi y yi
     xi = x0
@@ -24,7 +24,7 @@ def main():
             # Calcular la solución usando el método de Euler
             archivo.write("Solucion:\n")
             archivo.write(f"x0 = {xi}, y0 = {yi}\n")
-            for i in range(0,n-1):  # Iteramos de 1 a n-1
+            for i in range(x0,n):  # Iteramos de 1 a n-1
                 yi1 = yi + h * f(xi, yi)  # Método de Euler
                 xi1 = xi + h
                 archivo.write(f"x{i} = {xi1:.5f}, y{i} = {yi1:.5f}\n")

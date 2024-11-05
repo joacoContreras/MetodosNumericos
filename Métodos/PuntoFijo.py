@@ -32,7 +32,7 @@ def punto_fijo(g, x0, tol, max_iter):
 # Valores iniciales
 x0 = 1.0  # Valor inicial
 tol = 1e-5  # Tolerancia
-max_iter = 100  # Máximo número de iteraciones
+max_iter = 1000  # Máximo número de iteraciones
 
 # Llamada al método de punto fijo
 raiz, iteraciones, convergio = punto_fijo(g, x0, tol, max_iter)

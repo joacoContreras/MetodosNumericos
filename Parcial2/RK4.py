@@ -2,7 +2,7 @@
 
 # function to be solved
 def f(x,y):
-    return (4*x*y)/(1+x**2)
+    return (3*(x**2)-1)/y
 
 # or
 # f = lambda x: x+y
@@ -11,7 +11,7 @@ def f(x,y):
 def rk4(x0,y0,xn,n):
     
     # Calculating step size
-    h = 0.01
+    h = 0.2
     
     print('\n--------SOLUTION--------')
     print('-------------------------')    
