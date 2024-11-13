@@ -3,13 +3,13 @@ import matplotlib.pyplot as plt
 import math
 
 # INGRESO
-fx = lambda x: math.exp(math.sqrt(1 + x)) * math.log(1 + 2 * math.pow(x, 2)) / (2 * math.sqrt(1 + x)) + math.exp(math.sqrt(1 + x)) * (4 * x) / (1 + 2 * math.pow(x, 2))
+fx = lambda x: math.log(x**2 + 1) - math.sin(x)
 
 # Intervalo de integración
-a = 0
-b = 1
+a = 1
+b = 2
 
-puntos = 4 # Debe ser entre 2 y 6
+puntos = 6 # Debe ser entre 2 y 6
 
 # PROCEDIMIENTO
 if puntos > 1 and puntos < 7:

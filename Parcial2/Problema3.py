@@ -2,29 +2,29 @@ import math
 
 # Definir la función f(x, y)
 def f(x, y):
-    return (4*x*y)/(1+x**2)
+    return (x * math.exp(x**2)) / y
 
 def main():
     # Definir los valores iniciales
     x0 = 0  # Valor inicial de x
     y0 = 1  # Valor inicial de y (puedes cambiar este valor según el problema)
     xfinal = 1  # Valor final de x
-    n = 100  # Número de divisiones
+    n = 10 # Número de divisiones
 
     # Calcular h (incremento)
-    h = 0.01
+    h = 0.1
 
     # Inicializar valores de xi y yi
     xi = x0
     yi = y0
 
     # Archivo para guardar los resultados
+    
     try:
         with open("resultados-Problema3.txt", "w") as archivo:
             archivo.write("Solucion:\n")
             archivo.write(f"x0 = {xi}, y0 = {yi}\n")
-            for i in range(1,n):
-                
+            for i in range(1,n+1):
                 if i == 1:
                     yi1 = yi + h * f(xi, yi)  # Método de Euler
                     xi1 = xi + h
