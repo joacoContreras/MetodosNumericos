@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-
+import math
 def graficar_funcion(f, a, b, n=1000, titulo="Gráfico de la función", xlabel="x", ylabel="f(x)"):
     """
     Grafica una función matemática en el intervalo [a, b].
@@ -31,7 +31,7 @@ def graficar_funcion(f, a, b, n=1000, titulo="Gráfico de la función", xlabel="
 # 🧪 Ejemplo de uso:
 if __name__ == "__main__":
     # Definimos una función (puede ser lambda o def)
-    funcion = lambda x: np.sin(x) * np.exp(-0.1*x)
+    funcion = lambda x: math.e**(-x) - x
 
     # Llamamos a la función de graficar
-    graficar_funcion(funcion, a=-20, b=20, titulo="f(x) = sin(x) * exp(-0.1x)")
+    graficar_funcion(funcion, a=-1, b=2, titulo="f(x) = sin(x) * exp(-0.1x)")
