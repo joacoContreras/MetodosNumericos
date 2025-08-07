@@ -1,6 +1,7 @@
+import numpy as np 
 def f(x):
-    # Define aquí tu función. Por ejemplo:
-    return 2 * x - 4
+    # Define aquí tu función:
+    return np.log((x**2) + 1) - np.sin(x)
 
 def biseccion(f, a, b, tol):
     # Verifica que hay un cambio de signo en el intervalo
@@ -40,8 +41,8 @@ def biseccion(f, a, b, tol):
     return c, iteracion, error
 
 # Valores iniciales
-a = 1.5
-b = 4.0
+a = 1.0
+b = 2.0
 tol = 1e-8
 
 # Llamada a la función de bisección
