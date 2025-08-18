@@ -8,11 +8,9 @@ A = np.array([[10.0, 3.0, 1.0],
 b = np.array([14.0, -5.0, 14.0])
 
 def get_base(A):
-    # Crea una matriz base de ceros del mismo tamaño que A
-    return np.zeros_like(A)
+    return np.zeros_like(A, dtype=float)
 
 def get_U(A):
-    # Extrae la matriz U (componentes por encima de la diagonal principal)
     U = get_base(A)
     n = len(A)
     for i in range(n):
@@ -21,13 +19,12 @@ def get_U(A):
     return U
 
 def get_D(A):
-    # Extrae la matriz diagonal D
     D = get_base(A)
-    np.fill_diagonal(D, np.diag(A))
+    for i in range(len(A)):
+        D[i, i] = A[i, i]
     return D
 
 def get_L(A):
-    # Extrae la matriz L (componentes por debajo de la diagonal principal)
     L = get_base(A)
     n = len(A)
     for i in range(1, n):
@@ -36,15 +33,12 @@ def get_L(A):
     return L
 
 def get_B(D, L, U, w):
-    # Calcula la matriz B del método de relajación
     return np.linalg.inv(D - w * L) @ ((1 - w) * D + w * U)
 
 def get_f(D, L, w, b):
-    # Calcula el vector f del método de relajación
     return w * np.linalg.inv(D - w * L) @ b
 
 def roll(B, f, x0):
-    # Realiza una iteración del método de relajación
     return B @ x0 + f
 
 def main(A, b, x0, e, w):
@@ -67,10 +61,10 @@ def main(A, b, x0, e, w):
 
 # Valores iniciales
 x0 = np.array([1.0, 1.0, 2.0])
-e = 0.00001  # Tolerancia
-w = 1.0      # Factor de relajación
+e = 1e-5
+w = 1.0  # Jacobi si w=1, Gauss-Seidel si w=1, SOR si w != 1
 
-# Ejecuta el método de relajación
+# Ejecuta el método
 sol, iteraciones = main(A, b, x0, e, w)
 print("Solución:", sol)
 print("Iteraciones:", iteraciones)

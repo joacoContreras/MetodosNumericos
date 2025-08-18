@@ -1,7 +1,10 @@
 import numpy as np
 
 def eliminacion_gaussiana(A, b):
+    A = A.copy().astype(float)  # Copia para no modificar el original
+    b = b.copy().astype(float)
     n = len(b)
+
     # Triangulación
     for i in range(n):
         # Pivoteo parcial
@@ -10,11 +13,9 @@ def eliminacion_gaussiana(A, b):
             raise ValueError("El sistema no tiene solución única.")
         
         if max_index != i:
-            # Intercambiar filas
             A[[i, max_index]] = A[[max_index, i]]
             b[[i, max_index]] = b[[max_index, i]]
 
-        # Eliminación Gaussiana
         for j in range(i+1, n):
             factor = A[j, i] / A[i, i]
             A[j, i:] -= factor * A[i, i:]
@@ -28,7 +29,6 @@ def eliminacion_gaussiana(A, b):
     
     return x
 
-# Ejemplo de uso:
 A = np.array([[0, 2, 5], [1, -4, 2], [5, 1, -2]], dtype=float)
 b = np.array([-14, -19, 16], dtype=float)
 

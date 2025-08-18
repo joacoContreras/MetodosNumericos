@@ -1,5 +1,5 @@
 import math
-
+import numpy as np
 def newton_raphson(f, df, x0, tol=1e-5, max_iter=100):
     iteracion = 0
     error = float('inf')
@@ -17,7 +17,7 @@ def newton_raphson(f, df, x0, tol=1e-5, max_iter=100):
         iteracion += 1
         print(f"Iteración {iteracion}: x = {x1:.8f}, error = {error:.2e}")
         x0 = x1
-    
+        
     convergio = error < tol
     if convergio:
         return x1, iteracion, True
@@ -26,10 +26,10 @@ def newton_raphson(f, df, x0, tol=1e-5, max_iter=100):
 
 # Función y derivada
 def f(x):
-    return math.e**(-x) - x
+    return np.log((x ** 2) + 1) - np.sin(x)
 
 def df(x):
-    return -math.e**(-x) - 1
+    return ((2 * x) / ((x ** 2) + 1)) - np.cos(x)
 
 # Llamada al método
 raiz, iteraciones, convergio = newton_raphson(f, df, x0=1.0)
