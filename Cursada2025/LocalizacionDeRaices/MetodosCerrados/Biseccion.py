@@ -1,7 +1,7 @@
 import numpy as np 
 def f(x):
     # Define aquí tu función:
-    return np.log((x**2) + 1) - np.sin(x)
+    return 35.444 * x - 26.961
 
 def biseccion(f, a, b, tol):
     # Verifica que hay un cambio de signo en el intervalo
@@ -40,9 +40,15 @@ def biseccion(f, a, b, tol):
 
     return c, iteracion, error
 
+def calcular_errores(raiz_aprox, raiz_exacta):
+    error_absoluto = abs(raiz_exacta - raiz_aprox)
+    error_porcentual = abs(error_absoluto / raiz_exacta) * 100
+    print(f"Error absoluto exacto: {error_absoluto:e}")
+    print(f"Error porcentual exacto: {error_porcentual:.8f}%")
+
 # Valores iniciales
-a = 1.0
-b = 2.0
+a = 0.5
+b = 0.8
 tol = 1e-8
 
 # Llamada a la función de bisección
@@ -53,3 +59,6 @@ if raiz is not None:
     print(f"\nLa raíz más pequeña encontrada es: {raiz}")
     print(f"Número total de iteraciones: {total_iteraciones}")
     print(f"Error estimado: {error:e}")
+    # Calcula y muestra los errores exactos
+    raiz_exacta = 26.961 / 35.444
+    calcular_errores(raiz, raiz_exacta)

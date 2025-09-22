@@ -4,8 +4,8 @@ import sympy as sym
 import matplotlib.pyplot as plt
 
 # INGRESO
-xi = [1.0, 1.2, 1.5, 1.75, 2.0]
-yi = [-0.148, -0.040, 0.181, 0.419, 0.700]
+xi = [0.5, 0.8, 1.3, 2]
+yi = [-0.716, -0.103, 3.419, 52.598]
 
 # PROCEDIMIENTO
 xi = np.array(xi, dtype=float)
