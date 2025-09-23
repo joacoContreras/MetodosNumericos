@@ -2,10 +2,11 @@
 import numpy as np
 import sympy as sym
 import matplotlib.pyplot as plt
+from scipy.optimize import brentq
 
 # INGRESO
-xi = [0.5, 0.8, 1.3, 2]
-yi = [-0.716, -0.103, 3.419, 52.598]
+xi = [1.0, 1.2, 1.5, 1.75, 2.0]
+yi = [-0.148, -0.040, 0.181, 0.419, 0.700]
 
 # PROCEDIMIENTO
 xi = np.array(xi, dtype=float)
@@ -62,3 +63,18 @@ plt.legend()
 plt.xlabel('xi')
 plt.title('Regresión por Mínimos Cuadrados')
 plt.show()
+
+def aproximar_raiz_fx(fx, a, b):
+    """
+    Aproxima la raíz de la función f(x) en el intervalo [a, b] usando el método de Brent.
+    """
+    try:
+        raiz = brentq(fx, a, b)
+        print(f"Raíz aproximada de f(x) en [{a}, {b}]: {raiz:.8f}")
+        return raiz
+    except Exception as e:
+        print(f"No se pudo encontrar la raíz en [{a}, {b}]: {e}")
+        return None
+
+# Ejemplo de uso:
+aproximar_raiz_fx(fx, 0, 3)

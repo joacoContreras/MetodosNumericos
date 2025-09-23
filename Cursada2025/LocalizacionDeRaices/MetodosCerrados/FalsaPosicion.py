@@ -40,6 +40,12 @@ def regla_falsa(f, a, b, tol):
 
     return c, errores
 
+def calcular_errores(raiz_aprox, raiz_exacta):
+    error_absoluto = abs(raiz_exacta - raiz_aprox)
+    error_porcentual = abs(error_absoluto / raiz_exacta) * 100
+    print(f"Error absoluto exacto: {error_absoluto:e}")
+    print(f"Error porcentual exacto: {error_porcentual:.8f}%")
+
 # Valores iniciales
 a = 1.0
 b = 2.0
@@ -53,6 +59,10 @@ raiz_regla_falsa, errores_regla_falsa = regla_falsa(f, a, b, tol)
 print(f"\nMétodo de Regla Falsa:")
 print(f"Raíz encontrada: {raiz_regla_falsa}")
 print(f"Iteraciones: {len(errores_regla_falsa)}")
+
+# Calcular y mostrar errores exactos
+raiz_exacta = 26.961 / 35.444
+calcular_errores(raiz_regla_falsa, raiz_exacta)
 
 # Graficar errores
 plt.figure(figsize=(12, 6))

@@ -5,10 +5,10 @@ import matplotlib.pyplot as plt
 
 # Definir la función f(x)
 def f(x):
-    return 35.444 * x - 26.961
+    return np.log(x**2 + 1) - np.sin(x)
 
 # Puntos xi
-xi = np.array([0.5, 0.8, 1.3, 2.0])
+xi = np.array([1.0, 1.2, 1.5, 1.75, 2.0])
 
 # Calcular los valores de f(x) en xi
 fi = f(xi)
