@@ -5,15 +5,15 @@ import matplotlib.pyplot as plt
 
 # Definir la función f(x)
 def f(x):
-    return np.log(x**2 + 1) - np.sin(x)
+    return 
 
 # Puntos xi
-xi = np.array([1.0, 1.2, 1.5, 1.75, 2.0])
+xi = np.array([1, 3, 5, 7, 13])
 
 # Calcular los valores de f(x) en xi
 fi = f(xi)
 
-# PROCEDIMIENTO
+# PROCEDIMIENTO1.0, 1.2, 1.5, 1.75, 2.0
 # Polinomio de Lagrange
 n = len(xi)
 x = sym.Symbol('x')

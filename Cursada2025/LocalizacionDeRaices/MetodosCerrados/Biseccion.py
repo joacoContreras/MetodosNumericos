@@ -1,7 +1,7 @@
 import numpy as np 
 def f(x):
     # Define aquí tu función:
-    return np.log(x**2 + 1) - np.sin(x)
+    return (x+1)/(x+4) - 0.25 * x
 
 def biseccion(f, a, b, tol):
     # Verifica que hay un cambio de signo en el intervalo
@@ -20,9 +20,9 @@ def biseccion(f, a, b, tol):
 
         # Evita división por cero en error
         if c != 0:
-            error = abs((c - c_prev))
+            error = abs((c - c_prev)) / (0.5 * abs(c + c_prev)) * 100
         else:
-            error = abs(c - c_prev)
+            error = abs((c - c_prev)) / (0.5 * abs(c + c_prev)) * 100
 
         # Imprime si estás en la iteración 10 (opcional)
         if iteracion == 10:
@@ -47,9 +47,9 @@ def calcular_errores(raiz_aprox, raiz_exacta):
     print(f"Error porcentual exacto: {error_porcentual:.8f}%")
 
 # Valores iniciales
-a = 1
-b = 2
-tol = 1e-4
+a = 1.7
+b = 3.2
+tol = 0.01
 
 # Llamada a la función de bisección
 raiz, total_iteraciones, error = biseccion(f, a, b, tol)
@@ -60,5 +60,5 @@ if raiz is not None:
     print(f"Número total de iteraciones: {total_iteraciones}")
     print(f"Error estimado: {error:e}")
     # Calcula y muestra los errores exactos
-    raiz_exacta = 26.961 / 35.444
-    calcular_errores(raiz, raiz_exacta)
+    #raiz_exacta = 26.961 / 35.444
+    #calcular_errores(raiz, raiz_exacta)

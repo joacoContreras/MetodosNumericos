@@ -1,10 +1,8 @@
 import numpy as np
 
-A = np.array([[5, 1, -2],
-              [1, -4, 2],
-              [0, 2, 5]], dtype=float)
+A = np.array([[4,1,0,0,0,-1], [2,10,-1,0,-2,0], [0, 3, 8,0,-1,-3],[0,-1,0,4,0,1],[1,-2,0,0,5,0],[0,0,3,-2,0,6]], dtype=float)
 
-b = np.array([16, -19, -14], dtype=float)
+b = np.array([0, 9, 7, 20, 22, 37], dtype=float)
 x0 = np.zeros_like(b)
 
 tol = 1e-4

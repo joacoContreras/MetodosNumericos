@@ -29,8 +29,8 @@ def eliminacion_gaussiana(A, b):
     
     return x
 
-A = np.array([[0, 2, 5], [1, -4, 2], [5, 1, -2]], dtype=float)
-b = np.array([-14, -19, 16], dtype=float)
+A = np.array([[7, 14.2], [14.2, 32.86]], dtype=float)
+b = np.array([9.076, 23.1896], dtype=float)
 
 solucion = eliminacion_gaussiana(A, b)
 print("La solución es:", solucion)

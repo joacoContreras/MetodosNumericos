@@ -13,8 +13,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Datos de ejemplo
-x = [1.0, 1.2, 1.5, 1.75, 2.0]
-y = [-0.148, -0.040, 0.181, 0.419, 0.700]
+x = [1, 3, 5, 7, 13]
+y = [800, 2310, 3090, 3940, 4755]
 
 # Convertimos las listas a arrays de NumPy
 x = np.array(x)
