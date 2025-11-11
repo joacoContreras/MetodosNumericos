@@ -1,0 +1,66 @@
+# Interpolación de Lagrange mejorada
+import numpy as np
+import sympy as sym
+import matplotlib.pyplot as plt
+
+# Definir la función f(x)
+def f(x):
+    return 
+
+# Puntos xi
+xi = np.array([1, 3, 5, 7, 13])
+
+# Calcular los valores de f(x) en xi
+yi = np.array([800, 2310, 3090, 3940, 4755])
+
+# PROCEDIMIENTO1.0, 1.2, 1.5, 1.75, 2.0
+# Polinomio de Lagrange
+n = len(xi)
+x = sym.Symbol('x')
+polinomio = 0
+divisorL = np.zeros(n, dtype=float)
+for i in range(0, n, 1):
+
+    # Término de Lagrange
+    numerador = 1
+    denominador = 1
+    for j in range(0, n, 1):
+        if j != i:
+            numerador = numerador * (x - xi[j])
+            denominador = denominador * (xi[i] - xi[j])
+    terminoLi = numerador / denominador
+
+    polinomio = polinomio + terminoLi * yi[i]
+    divisorL[i] = denominador
+
+# Simplifica el polinomio
+polisimple = polinomio.expand()
+
+# Para evaluación numérica
+px = sym.lambdify(x, polisimple)
+
+# Puntos para la gráfica
+muestras = 101
+a = np.min(xi)
+b = np.max(xi)
+pxi = np.linspace(a, b, muestras)
+pyi = px(pxi)
+
+# SALIDA
+print('    valores de fi: ', yi)
+print('divisores en L(i): ', divisorL)
+print()
+print('Polinomio de Lagrange, expresiones')
+print(polinomio)
+print()
+print('Polinomio de Lagrange simplificado: ')
+print(polisimple)
+
+# Gráfica
+plt.plot(xi, yi, 'o', label='Puntos')
+plt.plot(pxi, pyi, label='Polinomio')
+plt.legend()
+plt.xlabel('xi')
+plt.ylabel('yi')
+plt.title('Interpolación Lagrange')
+plt.show()

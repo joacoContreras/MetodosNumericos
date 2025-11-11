@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 from pylab import mpl
 
 mpl.rcParams['font.sans-serif'] = ['SimHei']
-x = np.array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 13])
-y = np.array([2.51, 3.30, 4.04, 4.70, 5.22, 5.54, 5.78, 5.40, 5.57, 5.70, 5.8, 5.90])
+x = np.array([1, 3, 5, 7, 13])
+y = np.array([800, 2310, 3090, 3940, 4755])
 n = len(x) - 1
 h = np.zeros(n)
 for i in range(0, n):
