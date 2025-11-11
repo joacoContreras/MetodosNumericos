@@ -1,0 +1,35 @@
+FUNCIÓN resolver_metodo_propuesto(f, x0, y0, h, x_final):
+  // Calcular el número de pasos
+  n_pasos = entero((x_final - x0) / h)
+  
+  // Crear arreglos para guardar los resultados
+  // (tamaño n_pasos + 1 para incluir el y0)
+  x_puntos = crear_arreglo(n_pasos + 1)
+  y_puntos = crear_arreglo(n_pasos + 1)
+  
+  // 1. Condición inicial (i=0)
+  x_puntos[0] = x0
+  y_puntos[0] = y0
+  
+  // 2. ARRANQUE (i=1): Usar Euler para encontrar y_1
+  // y_1 = y_0 + h * f(x_0, y_0)
+  x_puntos[1] = x0 + h
+  y_puntos[1] = y_puntos[0] + h * f(x_puntos[0], y_puntos[0])
+  
+  // 3. BUCLE PRINCIPAL (i=2 en adelante)
+  // Usar la fórmula de 2 pasos
+  PARA i DESDE 1 HASTA n_pasos-1:
+    x_i = x_puntos[i]
+    y_i = y_puntos[i]
+    x_i_menos_1 = x_puntos[i-1]
+    y_i_menos_1 = y_puntos[i-1]
+    
+    f_i = f(x_i, y_i)
+    f_i_menos_1 = f(x_i_menos_1, y_i_menos_1)
+    
+    // y_{i+1} = y_i + h * (2*f_i - f_i_menos_1)
+    y_puntos[i+1] = y_i + h * (2 * f_i - f_i_menos_1)
+    x_puntos[i+1] = x_i + h
+    
+  // 4. Retornar los arreglos con la solución
+  RETORNAR x_puntos, y_puntos
