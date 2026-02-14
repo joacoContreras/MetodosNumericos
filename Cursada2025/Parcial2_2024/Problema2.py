@@ -9,11 +9,11 @@ def f_edo(x, y):
     # con y(0)=1 no debería ocurrir en este intervalo.
     if y == 0:
         return np.inf
-    return (x * np.exp(x)) / y
+    return (4*x*y)/(1 + x **2)
 
 def sol_exacta(x):
     """Solución analítica exacta (inciso b)."""
-    return np.sqrt(2 * (x - 1) * np.exp(x) + 3)
+    return (1 + x**2)**2
 
 # --- (a) Implementación del Método Propuesto ---
 
@@ -24,7 +24,7 @@ def solve_metodo_propuesto(f, x0, y0, h, x_final):
     y = np.zeros(n_steps + 1)
     
     # Condición inicial (i=0)
-    y[0] = y0
+    y[0] = 1
     
     # (i=1) ARRANQUE con Euler
     y[1] = y[0] + h * f(x[0], y[0])
@@ -45,7 +45,7 @@ def solve_rk4(f, x0, y0, h, x_final):
     n_steps = int((x_final - x0) / h)
     x = np.linspace(x0, x_final, n_steps + 1)
     y = np.zeros(n_steps + 1)
-    y[0] = y0
+    y[0] = 1
 
     for i in range(n_steps):
         k1 = h * f(x[i], y[i])
@@ -64,12 +64,12 @@ print("### Problema 2: Solución de EDOs ###")
 x0 = 0.0
 y0 = 1.0
 x_final = 1.0
-h = 0.1 # Paso pedido en el inciso (c)
+h = 0.01
 
-# 1. Resolver con Método Propuesto (c)
+# 1. Resolver con Método Propuesto
 x_prop, y_prop = solve_metodo_propuesto(f_edo, x0, y0, h, x_final)
 
-# 2. Resolver con RK4 (d)
+# 2. Resolver con RK4
 x_rk4, y_rk4 = solve_rk4(f_edo, x0, y0, h, x_final)
 
 # 3. Calcular Solución Exacta (b)
@@ -80,7 +80,7 @@ y_exact = sol_exacta(x_exact)
 # (c) y (d) Tabla de resultados y errores
 print(f"\nResultados para h = {h}:")
 print("------------------------------------------------------------------------------------------------")
-print("  x  | Sol. Exacta | Sol. Propuesta (c) | Error Abs. (c) |    Sol. RK4 (d)    | Error Abs. (d) |")
+print("  x  | Sol. Exacta | Sol. Propuesta (b) | Error Abs. (b) |    Sol. RK4 (d)    | Error Abs. (d) |")
 print("------------------------------------------------------------------------------------------------")
 
 # Índices para x=0.5 y x=1.0

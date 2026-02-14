@@ -130,8 +130,6 @@ if __name__ == "__main__":
     x_rk4, y_rk4 = resolver_sistema_rk4(funciones_sistema, x_inicial, cond_iniciales, x_final, n_pasos)
     
     print("--- Sistema de EDOs / EDO de Orden Superior con RK4 ---")
-    print("Problema: y'' + y = 4cos(x), y(0)=0, y'(0)=0")
-    print(f"Solución Numérica (y1) vs. Solución Exacta (y = 2x*sin(x))")
     print("-" * 65)
     print(f"{'x':<5} | {'y1 (Numérico)':<15} | {'y (Exacto)':<15} | {'Error':<15}")
     print("-" * 65)

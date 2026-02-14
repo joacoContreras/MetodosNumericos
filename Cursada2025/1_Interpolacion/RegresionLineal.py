@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 from scipy.optimize import brentq
 
 # INGRESO
-xi = [1.0, 1.2, 1.5, 1.75, 2.0]
-yi = [-0.148, -0.040, 0.181, 0.419, 0.700]
+xi = [1.1 , 2.1, 3.8, 5, 6.2, 8.5, 9.4, 11.7, 15.1, 15.6, 22.2]
+yi = [0.0875, 0.1763, 0.2679, 0.3639, 0.4663, 0.5773, 0.7008, 0.839, 1, 1.1917, 1.4281]
 
 # PROCEDIMIENTO
 xi = np.array(xi, dtype=float)
@@ -43,11 +43,45 @@ r = numerador / (raiz1 * raiz2)
 r2 = r**2
 r2_porcentaje = np.around(r2 * 100, 2)
 
+def calcular_error_pendiente(xi, yi, a0, a1, n):
+    """
+    Calcula el error estándar de la pendiente en la regresión lineal.
+    
+    Parámetros:
+    xi: valores x de los datos
+    yi: valores y de los datos
+    a0: intercepto de la regresión
+    a1: pendiente de la regresión
+    n: número de puntos de datos
+    
+    Retorna:
+    error_pendiente: error estándar de la pendiente
+    """
+    # Calcular los residuos
+    y_pred = a0 + a1 * xi
+    residuos = yi - y_pred
+    
+    # Calcular la suma de cuadrados de los residuos
+    suma_residuos_cuadrados = np.sum(residuos**2)
+    
+    # Calcular la suma de cuadrados de las desviaciones de x
+    x_mean = np.mean(xi)
+    suma_x_desviaciones_cuadrados = np.sum((xi - x_mean)**2)
+    
+    # Calcular el error estándar de la pendiente
+    error_pendiente = np.sqrt(suma_residuos_cuadrados / ((n-2) * suma_x_desviaciones_cuadrados))
+    
+    return error_pendiente
+
+# Calcular el error de la pendiente
+error_a1 = calcular_error_pendiente(xi, yi, a0, a1, n)
+
 # SALIDA
 print(' f(x) =', f)
 print('Coeficiente de correlación   r  =', r)
 print('Coeficiente de determinación r² =', r2)
 print(f'{r2_porcentaje}% de los datos están descritos en el modelo lineal')
+print(f'Error estándar de la pendiente: {error_a1:.6f}')
 
 # gráfica
 plt.plot(xi, yi, 'o', label='(xi, yi)')

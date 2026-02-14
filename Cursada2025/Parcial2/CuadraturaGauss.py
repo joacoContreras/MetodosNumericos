@@ -70,10 +70,10 @@ def cuadratura_gauss(f, a: float, b: float, n_puntos: int) -> float:
 # --- Función a integrar --- 
 # Acordarse que se integra g(x) = f(x) / x
 def mi_funcion(x):
-    return (np.log(x**2 + 1) - np.sin(x)) / x
+    return (np.exp(np.sqrt(1+x)) * np.log(1 + 2 * (x**2)))
 
-a_lim = 1.0
-b_lim = 2.0
+a_lim = 0.0
+b_lim = 1.0
 
 # Calcular integrales con Gauss
 integral_g2 = cuadratura_gauss(mi_funcion, a_lim, b_lim, 2)
@@ -82,7 +82,6 @@ integral_g6 = cuadratura_gauss(mi_funcion, a_lim, b_lim, 6)
 # Valor de referencia con scipy.integrate.quad
 integral_ref, _ = quad(mi_funcion, a_lim, b_lim)
 
-print(f"Integral de ln(x²+1) - sin(x) en [1, 2]:")
 print(f"Con 2 puntos Gauss: {integral_g2:.10f}")
 print(f"Con 6 puntos Gauss: {integral_g6:.10f}")
 print(f"Referencia (quad):  {integral_ref:.10f}")

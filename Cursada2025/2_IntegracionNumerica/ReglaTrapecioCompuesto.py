@@ -1,7 +1,7 @@
 import math
 
 def f(x: float) -> float:
-    return x**2 + 1
+    return x / math.sqrt(1 + x ** 2)
 
 def integral_exacta(a: float, b: float) -> float:
     """
@@ -18,7 +18,7 @@ def integral_exacta(a: float, b: float) -> float:
 
 def regla_trapecio_compuesta(a: float, b: float, n: int) -> float:
     """
-    Calcula la integral de una función usando la Regla del Trapecio Compuesta.    
+    Calcula la integral de una función usando la Regla del Trapecio Compuesta.
     Args:
         a: Límite inferior de integración.
         b: Límite superior de integración.
@@ -70,7 +70,6 @@ if __name__ == "__main__":
     error = calcular_error_absoluto(resultado_aproximado, resultado_exacto)
 
     # Mostrar el resultado
-    print("\nResultados para f(x) = x^2 + 1:")
     print("-----------------------------------")
     print(f"Integral aproximada: {resultado_aproximado:.6f}")
     print(f"Integral exacta:     {resultado_exacto:.6f}")

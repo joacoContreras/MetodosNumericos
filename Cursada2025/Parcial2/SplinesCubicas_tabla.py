@@ -2,9 +2,9 @@ import numpy as np
 from scipy.interpolate import CubicSpline
 
 # --- Datos (los mismos de antes) ---
-x_tabla = np.array([1.00, 1.20, 1.45, 1.70, 2.00])
+x_tabla = np.array([0.00, 0.20, 0.43, 0.55, 0.85, 0.90, 1.00])
 def f(x):
-    return np.log(x**2 + 1) - np.sin(x)
+    return np.exp(x) - np.sin(x)
 y_tabla = f(x_tabla)
 spline = CubicSpline(x_tabla, y_tabla, bc_type='natural')
 
@@ -16,7 +16,7 @@ spline = CubicSpline(x_tabla, y_tabla, bc_type='natural')
 # 2 = [1.45, 1.70]
 # 3 = [1.70, 2.00]
 
-indice_intervalo = 4 # <-- ¡SOLO CAMBIA ESTE NÚMERO!
+indice_intervalo = 5 
 
 # ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
 # -------------------------------------------------------------

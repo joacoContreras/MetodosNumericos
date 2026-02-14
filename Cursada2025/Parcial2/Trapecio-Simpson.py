@@ -69,17 +69,15 @@ def regla_simpson_compuesta(x_puntos: np.ndarray, y_puntos: np.ndarray) -> float
     
     return integral
 
-# --- Ejemplo de uso con los datos del Spline de la lección anterior ---
-# Supongamos que generamos 11 PUNTOS (es decir, 10 INTERVALOS)
-x_tabla = np.linspace(1.0, 2.0, 11) 
+x_tabla = np.array([0.0, 0.25, 0.50, 0.75, 1.00]) 
 # Estos 'y_tabla' serían los valores f(x) o f'(x) de nuestra tabla
 # Solo como ejemplo, usemos f(x) = x^2
-y_tabla = x_tabla**2 
+y_tabla = np.array([0.000000, 0.317673, 0.790439, 1.443029, 2.2873])
+# Entonces:
 
 # x_tabla = [1.0, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0]
 # y_tabla = [1.0, 1.21, 1.44, 1.69, 1.96, 2.25, 2.56, 2.89, 3.24, 3.61, 4.0]
 
-print("--- Ejemplo de Integración Numérica (con f(x)=x^2) ---")
 # 1. Con Trapecio
 integral_trapecio = regla_trapecio_compuesta(x_tabla, y_tabla)
 print(f"Integral con Trapecio: {integral_trapecio:.6f}")
@@ -88,7 +86,3 @@ print(f"Integral con Trapecio: {integral_trapecio:.6f}")
 # Tenemos 11 puntos, o sea 10 intervalos (n=10), es PAR, por lo que podemos usar Simpson.
 integral_simpson = regla_simpson_compuesta(x_tabla, y_tabla)
 print(f"Integral con Simpson 1/3: {integral_simpson:.6f}")
-
-# El valor exacto de la integral de x^2 de 1 a 2 es (2^3/3 - 1^3/3) = 7/3 = 2.333333
-print(f"Valor Exacto: {7/3:.6f}")
-print("Nota: Simpson es mucho más preciso.")
