@@ -26,13 +26,13 @@ def newton_raphson(f, df, x0, tol=1e-10, max_iter=100):
 
 # Función y derivada
 def f(x):
-    return (x + 1)/(x + 4) - 0.25 * x
+    return 1.1236878843 / x - 10
 
 def df(x):
-    return ((x+4)-(x+1)) / (x+4)**2 - 0.25
+    return -1.1236878843 / x**2
 
 # Llamada al método
-raiz, iteraciones, convergio = newton_raphson(f, df, x0=1.0)
+raiz, iteraciones, convergio = newton_raphson(f, df, x0=0.05)
 
 # Resultado
 if convergio:

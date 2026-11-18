@@ -2,7 +2,7 @@ import numpy as np
 from scipy.interpolate import CubicSpline
 
 # --- Datos (los mismos de antes) ---
-x_tabla = np.array([0.00, 0.20, 0.43, 0.55, 0.85, 0.90, 1.00])
+x_tabla = np.array([0.00, 1.00, 2.00, 3.00, 4.00, 5.00])
 def f(x):
     return np.exp(x) - np.sin(x)
 y_tabla = f(x_tabla)
