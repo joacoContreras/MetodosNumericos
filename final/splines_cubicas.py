@@ -393,12 +393,15 @@ if __name__ == "__main__":
         # Tabla de ejemplo con 2 columnas: [x, y]
         # (Modifica libremente estos valores según tus necesidades)
         fuente_datos = [
-                        [0, 0],
-                        [1.0, 2.1],
-                        [2.0, 3.8],
-                        [3.0, 5.1],
-                        [4.0, 5.9],
-                        [5.0, 6.3]
+                        [1.0, 5.381],
+                        [1.3, 8.672],
+                        [1.4, 9.592],
+                        [1.45, 9.988],
+                        [1.6, 10.853],
+                        [1.72, 11.146],
+                        [1.8, 11.136],
+                        [1.93, 10.780],
+                        [2.0, 10.435]
         ]
         print(">> Usando tabla de datos de ejemplo por defecto:")
         print("   x    |    y   ")

@@ -42,12 +42,12 @@ def regla_simpson_compuesta(f, a: float, b: float, n: int) -> float:
 # --- Bloque principal de ejecución ---
 if __name__ == "__main__":
     # Definición de la función a integrar
-    fx = lambda x: math.exp(math.sqrt(1 + x)) * math.log(1 + 2 * (x**2))
+    fx = lambda x: (math.e**(2 * math.sin(x))) * (1 + math.log(x))
 
     # Parámetros de la integración
-    a = 0.0
-    b = 1
-    n = 4
+    a = 1
+    b = 2
+    n = 10
     
     try:
         resultado = regla_simpson_compuesta(fx, a, b, n)

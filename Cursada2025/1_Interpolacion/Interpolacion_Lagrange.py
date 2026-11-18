@@ -1,14 +1,17 @@
 # Interpolación de Lagrange mejorada
+import math
 import numpy as np
 import sympy as sym
 import matplotlib.pyplot as plt
 
 # Definir la función f(x)
+a = 35.44387596
+b = -26.960957364
 def f(x):
-    return 
+    return a * math.e**(x**2) + b
 
 # Puntos xi
-xi = np.array([1, 3, 5, 7, 13])
+xi = np.array([0.5, 0.8, 1.3, 2.0])
 
 # Calcular los valores de f(x) en xi
 fi = f(xi)

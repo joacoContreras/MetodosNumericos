@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 from scipy.optimize import brentq
 
 # INGRESO
-xi = [1.1 , 2.1, 3.8, 5, 6.2, 8.5, 9.4, 11.7, 15.1, 15.6, 22.2]
-yi = [0.0875, 0.1763, 0.2679, 0.3639, 0.4663, 0.5773, 0.7008, 0.839, 1, 1.1917, 1.4281]
+xi = [0.5, 0.8, 1.3, 2.0]
+yi = [-0.716, -0.103, 3.419, 52.598]
 
 # PROCEDIMIENTO
 xi = np.array(xi, dtype=float)
