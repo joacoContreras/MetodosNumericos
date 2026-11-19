@@ -4,13 +4,16 @@ Ejecución desde la raíz del proyecto:
     python final/lagrange_tabla.py --decimales 5
     python final/lagrange_tabla.py --tolerancia '10^-5'
     python final/lagrange_tabla.py --intervalo 1 --raiz-exacta VALOR
+    python final/lagrange_tabla.py --no-grafica
 
 Lagrange construye P(x) a partir de TODOS los puntos de la tabla. Luego se
 detectan cambios de signo entre nodos y se aplica bisección a P(x).
 La tolerancia controla la localización de una raíz del polinomio, no el
 error de interpolación respecto de una función original desconocida.
 
+Por defecto grafica las bases L_i(x), los aportes y_i*L_i(x) y P(x).
 Requiere SymPy y el archivo biseccion_tabla.py de esta misma carpeta.
+Para las gráficas también requiere NumPy y Matplotlib.
 """
 
 import argparse
@@ -33,14 +36,26 @@ else:
 
 # ======================= DATOS CONFIGURABLES =======================
 FUENTE_DATOS = [
-    [0.5, -0.716],
-    [0.8, -0.103],
-    [1.3, 3.419],
-    [2.0, 52.598],
+    [0.0, 1.0],
+    [60.0, 4.0],
+    [100.00, 10.00],
 ]
 DECIMALES = 5       # Tolerancia absoluta: 10**(-DECIMALES).
 RAIZ_EXACTA = None  # Opcional: raíz conocida del polinomio para medir el error real.
 # ===================================================================
+
+
+def _calcular_bases_lagrange(nodos):
+    """Construye las bases simbólicas para una secuencia de nodos distintos."""
+    x = sym.Symbol('x')
+    bases = []
+    for i, nodo in enumerate(nodos):
+        base = sym.S.One
+        for j, otro_nodo in enumerate(nodos):
+            if i != j:
+                base *= (x - otro_nodo) / (nodo - otro_nodo)
+        bases.append(base)
+    return bases
 
 
 def calcular_polinomio_lagrange(tabla, logger=None):
@@ -56,18 +71,13 @@ def calcular_polinomio_lagrange(tabla, logger=None):
     datos = validar_tabla(tabla)
     nodos = [sym.Rational(str(x)) for x, _ in datos]
     valores = [sym.Rational(str(y)) for _, y in datos]
-    x = sym.Symbol('x')
     polinomio = sym.S.Zero
 
     logger.info('\nCONSTRUCCIÓN DEL POLINOMIO DE LAGRANGE')
     logger.info('P(x) = suma(y_i * L_i(x)); se utilizan los %d puntos.', len(datos))
-    for i, nodo in enumerate(nodos):
-        base = sym.S.One
-        for j, otro_nodo in enumerate(nodos):
-            if i != j:
-                base *= (x - otro_nodo) / (nodo - otro_nodo)
+    for i, base in enumerate(_calcular_bases_lagrange(nodos)):
         polinomio += valores[i] * base
-        logger.info('  i=%d: x_i=%s, y_i=%s, L_i(x)=%s', i, nodo, valores[i], base)
+        logger.info('  i=%d: x_i=%s, y_i=%s, L_i(x)=%s', i, nodos[i], valores[i], base)
 
     polinomio = sym.expand(polinomio)
     logger.info('P(x) exacto para los decimales tabulados = %s', polinomio)
@@ -75,6 +85,60 @@ def calcular_polinomio_lagrange(tabla, logger=None):
     if polinomio == 0:
         logger.info('P(x) es idénticamente cero: cualquier punto del dominio es raíz.')
     return polinomio
+
+
+def graficar_lagrange(tabla, mostrar=True):
+    """Grafica cada base, su aporte y el interpolante entre los nodos extremos.
+
+    Marca L_i(x_j)=delta_ij y los puntos originales para comparar las curvas.
+    Devuelve la figura; mostrar=False permite guardarla sin abrir una ventana.
+    """
+    import matplotlib.pyplot as plt
+    import numpy as np
+
+    datos = validar_tabla(tabla)
+    nodos = [sym.Rational(str(x)) for x, _ in datos]
+    valores = [sym.Rational(str(y)) for _, y in datos]
+    bases = _calcular_bases_lagrange(nodos)
+    aportes = [valor * base for valor, base in zip(valores, bases)]
+    x = sym.Symbol('x')
+    abscisas, ordenadas = np.asarray(datos).T
+    puntos = np.unique(np.concatenate((np.linspace(abscisas[0], abscisas[-1], 600), abscisas)))
+
+    def evaluar(expresion):
+        funcion = sym.lambdify(x, expresion, modules='numpy')
+        # Las expresiones constantes (incluido cero) devuelven un escalar.
+        return np.broadcast_to(np.asarray(funcion(puntos), dtype=float), puntos.shape)
+
+    figura, ejes = plt.subplots(3, 1, figsize=(10, 11), sharex=True,
+                               constrained_layout=True)
+    for i, (base, aporte) in enumerate(zip(bases, aportes)):
+        linea, = ejes[0].plot(puntos, evaluar(base),
+                             label=fr'$L_{{{i}}}(x)$; $x_{{{i}}}={abscisas[i]:g}$')
+        color = linea.get_color()
+        valores_base = np.zeros(len(datos))
+        valores_base[i] = 1
+        ejes[0].scatter(abscisas, valores_base, color=color, s=22, zorder=3)
+        ejes[1].plot(puntos, evaluar(aporte), color=color,
+                     label=fr'$y_{{{i}}}L_{{{i}}}(x)$; $y_{{{i}}}={ordenadas[i]:g}$')
+
+    ejes[2].plot(puntos, evaluar(sum(aportes, sym.S.Zero)),
+                 color='black', label=r'$P(x)=\sum_i y_i L_i(x)$')
+    ejes[2].scatter(abscisas, ordenadas, color='tab:red', label='Datos de la tabla', zorder=3)
+    for eje, titulo, etiqueta in zip(
+        ejes,
+        ['Polinomios base de Lagrange', 'Aporte de cada punto', 'Polinomio interpolante'],
+        [r'$L_i(x)$', r'$y_i L_i(x)$', r'$P(x)$'],
+    ):
+        eje.set_title(titulo)
+        eje.set_ylabel(etiqueta)
+        eje.axhline(0, color='gray', linewidth=0.8)
+        eje.grid(True, alpha=0.3)
+        eje.legend()
+    ejes[-1].set_xlabel('x')
+    if mostrar:
+        plt.show()
+    return figura
 
 
 def crear_funcion_lagrange(polinomio):
@@ -151,6 +215,8 @@ def main():
     parser.add_argument('--raiz-exacta', type=float, default=RAIZ_EXACTA,
                         help='Raíz conocida del polinomio para calcular los errores exactos.')
     parser.add_argument('--max-iteraciones', type=int, default=1000)
+    parser.add_argument('--grafica', action=argparse.BooleanOptionalAction, default=True,
+                        help='Mostrar bases, aportes e interpolante (activada por defecto).')
     parser.add_argument('--log', type=Path, default=Path(__file__).with_suffix('.log'),
                         help='Archivo de registro; se reemplaza en cada ejecución.')
     args = parser.parse_args()
@@ -174,6 +240,8 @@ def main():
             FUENTE_DATOS, tolerancia, args.intervalo, args.raiz_exacta,
             args.max_iteraciones, logger,
         )
+        if args.grafica:
+            graficar_lagrange(FUENTE_DATOS)
         if resultado is None:
             logger.info('Registro guardado en: %s', args.log.resolve())
             return 0
@@ -200,7 +268,7 @@ def main():
         logger.info('N/D indica falta de referencia, primera iteración o denominador cero.')
         logger.info('Registro guardado en: %s', args.log.resolve())
         return 0 if resultado['convergio'] else 1
-    except (ValueError, OSError) as error:
+    except (ValueError, OSError, ImportError) as error:
         logger.error('ERROR: %s', error)
         return 1
     finally:

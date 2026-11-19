@@ -286,13 +286,13 @@ if __name__ == "__main__":
 
     # 1. Definir la función dy/dx = f(x, y)
     def mi_edo(x: float, y: float) -> float:
-        return -2.0 * x * y
+        return y * (4 * y - x**2)
 
     # 2. Definir parámetros
     x0 = 0.0           # Punto inicial
     y0 = 1.0           # Condición inicial y(x0) = y0
-    x_final = 1.0      # PUNTO DE CÁLCULO
-    h = 0.2            # Tamaño de paso h (o alternativamente n_pasos = 5)
+    x_final = 3.0      # PUNTO DE CÁLCULO
+    h = 0.1            # Tamaño de paso h (o alternativamente n_pasos = 5)
 
     # Solución analítica para comparar (opcional, poner None si no se tiene)
     sol_analitica = lambda x: np.exp(-x**2)

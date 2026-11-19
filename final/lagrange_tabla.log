@@ -2,81 +2,22 @@ LOCALIZACIÓN DE RAÍCES: LAGRANGE + BISECCIÓN
 La tolerancia controla el error de la raíz de P(x).
 No incluye el error de interpolación respecto de la función original.
 Tabla utilizada:
-  x=    0.5000000000 | y=-7.1600000000e-01
-  x=    0.8000000000 | y=-1.0300000000e-01
-  x=    1.3000000000 | y=+3.4190000000e+00
-  x=    2.0000000000 | y=+5.2598000000e+01
+  x=    0.0000000000 | y=+1.0000000000e+00
+  x=   60.0000000000 | y=+4.0000000000e+00
+  x=  100.0000000000 | y=+1.0000000000e+01
 
 CONSTRUCCIÓN DEL POLINOMIO DE LAGRANGE
-P(x) = suma(y_i * L_i(x)); se utilizan los 4 puntos.
-  i=0: x_i=1/2, y_i=-179/250, L_i(x)=(4/3 - 2*x/3)*(13/8 - 5*x/4)*(8/3 - 10*x/3)
-  i=1: x_i=4/5, y_i=-103/1000, L_i(x)=(5/3 - 5*x/6)*(13/5 - 2*x)*(10*x/3 - 5/3)
-  i=2: x_i=13/10, y_i=3419/1000, L_i(x)=(20/7 - 10*x/7)*(5*x/4 - 5/8)*(2*x - 8/5)
-  i=3: x_i=2, y_i=26299/500, L_i(x)=(2*x/3 - 1/3)*(5*x/6 - 2/3)*(10*x/7 - 13/7)
-P(x) exacto para los decimales tabulados = 15599*x**3/504 - 1870349*x**2/25200 + 7384051*x/126000 - 965887/63000
-P(x) con coeficientes decimales = 30.9503968254*x**3 - 74.2201984127*x**2 + 58.6035793651*x - 15.3315396825
+P(x) = suma(y_i * L_i(x)); se utilizan los 3 puntos.
+  i=0: x_i=0, y_i=1, L_i(x)=(1 - x/60)*(1 - x/100)
+  i=1: x_i=60, y_i=4, L_i(x)=x*(5/2 - x/40)/60
+  i=2: x_i=100, y_i=10, L_i(x)=x*(x/40 - 3/2)/100
+P(x) exacto para los decimales tabulados = x**2/1000 - x/100 + 1
+P(x) con coeficientes decimales = 0.001*x**2 - 0.01*x + 1.0
 
 BÚSQUEDA DE INTERVALOS
 Como P(x_i)=y_i, los cambios de signo de la tabla también son de P(x).
-Examinar [0.5, 0.8]: f(a)=-7.16000000e-01, f(b)=-1.03000000e-01 -> sin cambio de signo.
-Examinar [0.8, 1.3]: f(a)=-1.03000000e-01, f(b)=+3.41900000e+00 -> cambio de signo.
-Examinar [1.3, 2]: f(a)=+3.41900000e+00, f(b)=+5.25980000e+01 -> sin cambio de signo.
-  Candidato 1: [0.8, 1.3]
-Se elige el candidato 1: [0.8, 1.3].
-Lagrange es la interpolación; bisección reduce el intervalo para controlar el error.
-En el registro de bisección, f(c) representa P(c).
-
-Bisección en [0.8, 1.3], tolerancia absoluta 1.00000000e-05.
-Error aproximado: |c_k-c_(k-1)|; porcentual: error aproximado/|c_k|*100.
-Iter                a                b                c           f(c)  Cota absoluta   Error aprox.  Error aprox.%
-   1     0.8000000000     1.3000000000     1.0500000000  +2.034030e-01   2.500000e-01            N/D            N/D
-     f(a) y f(c) tienen signos opuestos: se conserva [a, c].
-   2     0.8000000000     1.0500000000     0.9250000000  -1.320977e-01   1.250000e-01 1.25000000e-01 1.35135135e+01
-     f(c) y f(b) tienen signos opuestos: se conserva [c, b].
-   3     0.9250000000     1.0500000000     0.9875000000  -3.259092e-02   6.250000e-02 6.25000000e-02 6.32911392e+00
-     f(c) y f(b) tienen signos opuestos: se conserva [c, b].
-   4     0.9875000000     1.0500000000     1.0187500000  +6.551157e-02   3.125000e-02 3.12500000e-02 3.06748466e+00
-     f(a) y f(c) tienen signos opuestos: se conserva [a, c].
-   5     0.9875000000     1.0187500000     1.0031250000  +1.184090e-02   1.562500e-02 1.56250000e-02 1.55763240e+00
-     f(a) y f(c) tienen signos opuestos: se conserva [a, c].
-   6     0.9875000000     1.0031250000     0.9953125000  -1.148559e-02   7.812500e-03 7.81250000e-03 7.84929356e-01
-     f(c) y f(b) tienen signos opuestos: se conserva [c, b].
-   7     0.9953125000     1.0031250000     0.9992187500  -1.055270e-04   3.906250e-03 3.90625000e-03 3.90930414e-01
-     f(c) y f(b) tienen signos opuestos: se conserva [c, b].
-   8     0.9992187500     1.0031250000     1.0011718750  +5.796199e-03   1.953125e-03 1.95312500e-03 1.95083886e-01
-     f(a) y f(c) tienen signos opuestos: se conserva [a, c].
-   9     0.9992187500     1.0011718750     1.0001953125  +2.827551e-03   9.765625e-04 9.76562500e-04 9.76371802e-02
-     f(a) y f(c) tienen signos opuestos: se conserva [a, c].
-  10     0.9992187500     1.0001953125     0.9997070313  +1.356576e-03   4.882812e-04 4.88281250e-04 4.88424343e-02
-     f(a) y f(c) tienen signos opuestos: se conserva [a, c].
-  11     0.9992187500     0.9997070313     0.9994628906  +6.244172e-04   2.441406e-04 2.44140625e-04 2.44271826e-02
-     f(a) y f(c) tienen signos opuestos: se conserva [a, c].
-  12     0.9992187500     0.9994628906     0.9993408203  +2.591684e-04   1.220703e-04 1.22070312e-04 1.22150832e-02
-     f(a) y f(c) tienen signos opuestos: se conserva [a, c].
-  13     0.9992187500     0.9993408203     0.9992797852  +7.675156e-05   6.103516e-05 6.10351562e-05 6.10791464e-03
-     f(a) y f(c) tienen signos opuestos: se conserva [a, c].
-  14     0.9992187500     0.9992797852     0.9992492676  -1.440500e-05   3.051758e-05 3.05175781e-05 3.05405059e-03
-     f(c) y f(b) tienen signos opuestos: se conserva [c, b].
-  15     0.9992492676     0.9992797852     0.9992645264  +3.116896e-05   1.525879e-05 1.52587891e-05 1.52700198e-03
-     f(a) y f(c) tienen signos opuestos: se conserva [a, c].
-  16     0.9992492676     0.9992645264     0.9992568970  +8.380897e-06   7.629395e-06 7.62939453e-06 7.63506817e-04
-
-Motivo de parada: La cota del error absoluto es menor o igual que la tolerancia.
-
-RESULTADO
-Convergencia: sí
-Raíz aproximada de P(x): 0.9992568969726563
-P(raíz aproximada): +8.3808972912e-06
-Intervalo inicial: [0.8, 1.3]
-Intervalo final: [0.999249267578125, 0.9992645263671875]
-Iteraciones empleadas: 16
-Tolerancia absoluta solicitada: 1.00000000e-05
-Cota del error absoluto: 7.62939453e-06
-Error absoluto aproximado entre iteraciones: 7.62939453e-06
-Error porcentual aproximado (%): 7.63506817e-04
-Error absoluto exacto respecto de la referencia: N/D
-Error porcentual exacto respecto de la referencia (%): N/D
-Error exacto N/D: se requiere una raíz de referencia (--raiz-exacta).
-Error porcentual aproximado = |c_k-c_(k-1)|/|c_k| * 100.
-N/D indica falta de referencia, primera iteración o denominador cero.
+Examinar [0, 60]: f(a)=+1.00000000e+00, f(b)=+4.00000000e+00 -> sin cambio de signo.
+Examinar [60, 100]: f(a)=+4.00000000e+00, f(b)=+1.00000000e+01 -> sin cambio de signo.
+No se detectaron cambios de signo ni ceros tabulados.
+Esto no descarta otras raíces del polinomio entre nodos del mismo signo.
 Registro guardado en: /home/joa/repos/MetodosNumericos/final/lagrange_tabla.log
